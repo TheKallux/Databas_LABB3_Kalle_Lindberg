@@ -9,7 +9,8 @@ namespace LABB2;
 public class Player : LevelElement
 {
     public int Health { get; set; }
-    public string Name { get; }
+    public string Name { get; set; }
+    public int Turns { get; set; }
     public Dice AttackDice { get; set; }
     public Dice DefenceDice { get; set; }
 
@@ -19,8 +20,8 @@ public class Player : LevelElement
         Color = ConsoleColor.White;
         Health = 100;
         Name = "Player";
-        AttackDice = new Dice(2, 6, 2);  
-        DefenceDice = new Dice(2, 6, 0);  
+        AttackDice = new Dice(2, 6, 2);
+        DefenceDice = new Dice(2, 6, 0);
     }
 
     public override void Draw(bool isVisible, bool isDiscovered)
@@ -31,9 +32,13 @@ public class Player : LevelElement
         Console.ResetColor();
     }
 
-    public void UpdatePlayer(List<LevelElement> elements)
+    // Returns false if player presses Escape (save & quit)
+    public bool UpdatePlayer(List<LevelElement> elements)
     {
         ConsoleKeyInfo key = Console.ReadKey(true);
+
+        if (key.Key == ConsoleKey.Escape)
+            return false;
 
         int newX = X;
         int newY = Y;
@@ -54,8 +59,13 @@ public class Player : LevelElement
 
         if (!collision)
         {
+            if (X != newX || Y != newY)
+                Turns++;
+
             X = newX;
             Y = newY;
         }
+
+        return true;
     }
 }

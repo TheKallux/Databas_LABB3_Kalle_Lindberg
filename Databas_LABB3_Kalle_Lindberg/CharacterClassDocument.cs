@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson;
 
-public class PlayerClassDocument
+public class CharacterClassDocument
 {
     public ObjectId Id { get; set; }
     public string Name { get; set; } = "";
