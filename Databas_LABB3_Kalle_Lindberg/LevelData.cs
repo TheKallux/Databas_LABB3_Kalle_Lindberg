@@ -10,7 +10,7 @@ namespace LABB2;
 public class LevelData
 {
     private List<LevelElement> elements;
-    private bool[,] discovered;
+    private bool[,] discovered = new bool[0, 0];
     private int width;
     private int height;
 
@@ -24,7 +24,7 @@ public class LevelData
         elements = new List<LevelElement>();
     }
 
-    public Player Player { get; private set; }
+    public Player Player { get; private set; } = null!;
 
     public void Load(string filename)
     {
