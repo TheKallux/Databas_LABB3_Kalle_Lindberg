@@ -11,14 +11,8 @@ public class Rat : Enemy
 {
     private static Random random = new Random();
 
-    public Rat()
+    public Rat() : base("Rat", 'r', ConsoleColor.Red, 10, new Dice(1, 6, 1), new Dice(1, 6, 0))
     {
-        Symbol = 'r';
-        Color = ConsoleColor.Red;
-        Health = 10;
-        Name = "Rat";
-        AttackDice = new Dice(1, 6, 1);  
-        DefenceDice = new Dice(1, 6, 0); 
     }
 
     public override void Update(Player player, List<LevelElement> elements)

@@ -21,21 +21,29 @@ public abstract class Enemy : LevelElement
                 health = value;
         }
     }
-    public string Name { get; protected set; }
-    public Dice AttackDice { get; protected set; }
-    public Dice DefenceDice { get; protected set; }
+    public string Name { get; }
+    public Dice AttackDice { get; }
+    public Dice DefenceDice { get; }
+
+    protected Enemy(string name, char symbol, ConsoleColor color, int health,
+                    Dice attackDice, Dice defenceDice)
+    {
+        Name = name;
+        Symbol = symbol;
+        Color = color;
+        Health = health;
+        AttackDice = attackDice;
+        DefenceDice = defenceDice;
+    }
 
     public abstract void Update(Player player, List<LevelElement> elements);
 
     public override void Draw(bool isVisible, bool isDiscovered)
     {
-
         if (!isVisible) return;
         Console.SetCursorPosition(X, Y);
         Console.ForegroundColor = Color;
         Console.Write(Symbol);
         Console.ResetColor();
     }
-
-
 }

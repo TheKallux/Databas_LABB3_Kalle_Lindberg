@@ -9,14 +9,8 @@ namespace LABB2;
 
 public class Snake : Enemy
 {
-    public Snake()
+    public Snake() : base("Snake", 's', ConsoleColor.Green, 25, new Dice(3, 4, 2), new Dice(1, 8, 0))
     {
-        Symbol = 's';
-        Color = ConsoleColor.Green;
-        Health = 25;
-        Name = "Snake";
-        AttackDice = new Dice(3, 4, 2);  
-        DefenceDice = new Dice(1, 8, 0); 
     }
 
     public override void Update(Player player, List<LevelElement> elements)
