@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.10.12210.168 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Databas_LABB3_Kalle_Lindberg", "Databas_LABB3_Kalle_Lindberg\Databas_LABB3_Kalle_Lindberg.csproj", "{EDDF3675-0239-44D3-9628-369EE25C99AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTest", "MongoTest\MongoTest.csproj", "{98B41362-3804-4F9C-95E0-119FF24A9A86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDDF3675-0239-44D3-9628-369EE25C99AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDF3675-0239-44D3-9628-369EE25C99AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDF3675-0239-44D3-9628-369EE25C99AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDF3675-0239-44D3-9628-369EE25C99AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B41362-3804-4F9C-95E0-119FF24A9A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B41362-3804-4F9C-95E0-119FF24A9A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B41362-3804-4F9C-95E0-119FF24A9A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B41362-3804-4F9C-95E0-119FF24A9A86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F93A59AC-2908-4812-8B4A-DA3E354F089B}
+	EndGlobalSection
+EndGlobal
