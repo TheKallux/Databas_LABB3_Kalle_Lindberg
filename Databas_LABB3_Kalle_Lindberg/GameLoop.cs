@@ -149,8 +149,13 @@ public class GameLoop
                 if (int.TryParse(Console.ReadLine(), out int deleteNumber)
                     && deleteNumber >= 1 && deleteNumber <= saves.Count)
                 {
-                    await repo.DeleteSaveAsync(saves[deleteNumber - 1].Id);
-                    return false;
+                    var target = saves[deleteNumber - 1];
+                    Console.Write($"Delete {target.PlayerName} permanently? (y/n): ");
+                    if ((Console.ReadLine() ?? "").Trim().Equals("y", StringComparison.OrdinalIgnoreCase))
+                    {
+                        await repo.DeleteSaveAsync(target.Id);
+                        return false;
+                    }
                 }
                 continue;
             }
