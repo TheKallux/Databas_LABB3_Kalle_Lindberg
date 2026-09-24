@@ -5,7 +5,7 @@ namespace LABB2;
 
 public class Combat
 {
-    private const int COMBAT_TEXT_X = 82; 
+    private const int COMBAT_TEXT_X = 82;
     private int currentLine = 0;
 
     public bool Fight(Player player, Enemy enemy, bool playerInitiated)
@@ -46,7 +46,7 @@ public class Combat
 
         WriteCombatLine($"{player.Name} attacks: {playerAttack}");
         WriteCombatLine($"{enemy.Name} defends: {enemyDefence}");
-        
+
 
         if (playerAttack > enemyDefence)
         {
@@ -90,12 +90,7 @@ public class Combat
         if (player.Health <= 0)
         {
             WriteCombatLine("");
-            WriteCombatLine("=== GAME OVER ===");
             WriteCombatLine("You died!");
-            WriteCombatLine("");
-            WriteCombatLine("Press any key to exit...");
-            Console.ReadKey(true);
-            Environment.Exit(0);
         }
 
         return false;
@@ -125,12 +120,8 @@ public class Combat
         if (player.Health <= 0)
         {
             WriteCombatLine("");
-            WriteCombatLine("=== GAME OVER ===");
             WriteCombatLine("You died!");
-            WriteCombatLine("");
-            WriteCombatLine("Press any key to exit...");
-            Console.ReadKey(true);
-            Environment.Exit(0);
+            return false;
         }
 
         WriteCombatLine("");

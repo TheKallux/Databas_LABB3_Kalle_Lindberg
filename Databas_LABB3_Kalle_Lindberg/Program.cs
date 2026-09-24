@@ -2,9 +2,12 @@
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        GameLoop game = new GameLoop();
-        game.Start();
+        var repo = new GameRepository();
+        await repo.SeedClassesAsync();
+
+        GameLoop game = new GameLoop(repo);
+        await game.StartAsync();
     }
 }
