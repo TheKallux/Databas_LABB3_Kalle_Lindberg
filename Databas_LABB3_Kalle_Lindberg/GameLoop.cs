@@ -110,7 +110,7 @@ public class GameLoop
                 chosen = classes[number - 1];
         }
 
-        level.Load("Level1.txt");
+        level.Load(Path.Combine(AppContext.BaseDirectory, "Level1.txt"));
         level.Player.Name = name;
         level.Player.Health = chosen.StartHp;
         level.Player.Symbol = chosen.Symbol;
@@ -134,13 +134,28 @@ public class GameLoop
             var s = saves[i];
             Console.WriteLine($"{i + 1}. {s.PlayerName} - {s.ClassName}, HP {s.Player.Health}, turns {s.Turns}");
         }
+        Console.WriteLine("D. Delete a character");
         Console.WriteLine("0. Back");
         Console.WriteLine();
 
         while (true)
         {
             Console.Write("Choose character: ");
-            if (int.TryParse(Console.ReadLine(), out int number))
+            string input = (Console.ReadLine() ?? "").Trim();
+
+            if (input.Equals("d", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.Write("Number of character to delete: ");
+                if (int.TryParse(Console.ReadLine(), out int deleteNumber)
+                    && deleteNumber >= 1 && deleteNumber <= saves.Count)
+                {
+                    await repo.DeleteSaveAsync(saves[deleteNumber - 1].Id);
+                    return false;
+                }
+                continue;
+            }
+
+            if (int.TryParse(input, out int number))
             {
                 if (number == 0) return false;
                 if (number >= 1 && number <= saves.Count)
