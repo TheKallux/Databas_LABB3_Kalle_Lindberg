@@ -143,4 +143,75 @@ public class LevelData
             return false;
         return discovered[x, y];
     }
+
+    public void FillSave(SaveGameDocument save)
+    {
+        save.LevelWidth = width;
+        save.LevelHeight = height;
+        save.Turns = Player.Turns;
+        save.Player = new PlayerDocument
+        {
+            X = Player.X,
+            Y = Player.Y,
+            Health = Player.Health
+        };
+
+        save.Walls = Elements.OfType<Wall>()
+            .Select(w => new WallDocument
+            {
+                X = w.X,
+                Y = w.Y,
+                IsDiscovered = discovered[w.X, w.Y]
+            })
+            .ToList();
+
+        save.Enemies = Elements.OfType<Enemy>()
+            .Select(e => new EnemyDocument
+            {
+                Type = e.GetType().Name,
+                X = e.X,
+                Y = e.Y,
+                Health = e.Health
+            })
+            .ToList();
+    }
+
+    public void LoadFromSave(SaveGameDocument save, CharacterClassDocument? characterClass)
+    {
+        elements.Clear();
+        width = save.LevelWidth;
+        height = save.LevelHeight;
+        discovered = new bool[width, height];
+
+        foreach (var w in save.Walls)
+        {
+            elements.Add(new Wall { X = w.X, Y = w.Y });
+            discovered[w.X, w.Y] = w.IsDiscovered;
+        }
+
+        foreach (var e in save.Enemies)
+        {
+            Enemy enemy = e.Type switch
+            {
+                "Rat" => new Rat(),
+                "Snake" => new Snake(),
+                _ => throw new InvalidOperationException($"Unknown enemy type: {e.Type}")
+            };
+            enemy.X = e.X;
+            enemy.Y = e.Y;
+            enemy.Health = e.Health;
+            elements.Add(enemy);
+        }
+
+        Player = new Player
+        {
+            X = save.Player.X,
+            Y = save.Player.Y,
+            Health = save.Player.Health,
+            Name = save.PlayerName,
+            Symbol = characterClass?.Symbol ?? '@',
+            Turns = save.Turns
+        };
+        elements.Add(Player);
+    }
 }
